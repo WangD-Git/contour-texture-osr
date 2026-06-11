@@ -167,9 +167,9 @@ def _make_cfg_from_args(
     uid_tag = _unknown_ckpt_tag(cfg)
     tag = _effective_ablation_tag(args)
     if tag:
-        cfg.save_path = str(_checkpoint_dir() / f"osr_{stem}_{tag}_unknown{uid_tag}_best.pth")
+        cfg.save_path = str(checkpoint_dir() / f"osr_{stem}_{tag}_unknown{uid_tag}_best.pth")
     else:
-        cfg.save_path = str(_checkpoint_dir() / f"osr_{stem}_unknown{uid_tag}_best.pth")
+        cfg.save_path = str(checkpoint_dir() / f"osr_{stem}_unknown{uid_tag}_best.pth")
     init_closed = getattr(args, "init_closed", "") or ""
     if init_closed:
         cfg.closed_init_ckpt = init_closed.strip()
