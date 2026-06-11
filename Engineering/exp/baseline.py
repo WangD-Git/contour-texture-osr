@@ -16,6 +16,7 @@ ensure_root_on_path()
 from utils import bl_model, bl_train, core, metrics
 from utils.pipeline import (
     build_closed_split,
+    checkpoint_dir,
     init_training_repro,
     prepare_model_on_device,
     print_multilabel_paper_report,
@@ -98,7 +99,7 @@ def _run_one(spec: bl_model.BaselineSpec, cfg: core.Config, args: argparse.Names
     else:
         train_lr = run_cfg.lr
 
-    ckpt_path = os.path.join("checkpoints", bl_model.resolve_ckpt_name(spec, pretrained=args.pretrained))
+    ckpt_path = str(checkpoint_dir() / bl_model.resolve_ckpt_name(spec, pretrained=args.pretrained))
     init_tag = "ImageNet fine-tune" if args.pretrained else "scratch"
     print(
         f"\n{'=' * 60}\n"
